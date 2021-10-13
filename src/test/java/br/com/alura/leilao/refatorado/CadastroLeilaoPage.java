@@ -3,26 +3,28 @@ package br.com.alura.leilao.refatorado;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CadastroLeilaoPage {
+import br.com.alura.leilao.refatora.PageObject;
 
-    private WebDriver browser;
+public class CadastroLeilaoPage extends PageObject {
+
 	private static final String URL_Cadastro_Leilao = "http://localhost:8080/leiloes/new";
-    
-    public CadastroLeilaoPage(WebDriver browser) {
-        this.browser = browser;        
-    }
+
+	
+	public CadastroLeilaoPage(WebDriver driver) {
+		super(driver);
+	}
 
 	public void fechar() {
-	    this.browser.quit();
+	    super.browser.quit();
 	}
 
 		public LeiloesPage cadastrarLeilao(String dataAbertura, String nome, String valorInicial)  {
-		    this.browser.findElement(By.xpath("//a[@id='novo_leilao_link']")).click();
-			this.browser.findElement(By.xpath("//input[@id=\"nome\"]")).sendKeys(nome);
-		    this.browser.findElement(By.xpath("//input[@id=\"valorInicial\"]")).sendKeys(valorInicial);
-		    this.browser.findElement(By.xpath("//input[@id=\"dataAbertura\"]")).sendKeys(dataAbertura);
-		    this.browser.findElement(By.xpath("//button[@id=\"button-submit\"]")).submit();
-		    return new LeiloesPage(browser);
+		    super.browser.findElement(By.xpath("//a[@id='novo_leilao_link']")).click();
+			super.browser.findElement(By.xpath("//input[@id=\"nome\"]")).sendKeys(nome);
+		    super.browser.findElement(By.xpath("//input[@id=\"valorInicial\"]")).sendKeys(valorInicial);
+		    super.browser.findElement(By.xpath("//input[@id=\"dataAbertura\"]")).sendKeys(dataAbertura);
+		    super.browser.findElement(By.xpath("//button[@id=\"button-submit\"]")).submit();
+		    return new LeiloesPage(super.browser);
 		}
 			
 		public boolean isPaginaAtual() {
@@ -35,9 +37,5 @@ public class CadastroLeilaoPage {
 					pageSource.contains("nao deve estar em branco")&&
 					pageSource.contains("deve ser um valor maior de  0.1")&&
 					pageSource.contains("deve ser uma data no formato dd/MM/yyyy");
-		}
-		
-		
-			
-			
+		}	
 }

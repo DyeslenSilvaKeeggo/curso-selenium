@@ -36,7 +36,6 @@ public class LeiloesTest {
 	@AfterEach
 	public void afterEach() {
 		this.driver.quit();
-//		this.paginaDeLeiloes.fechar();
 	}
 
 	@Test

@@ -3,18 +3,19 @@ package br.com.alura.leilao.refatorado;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LancesPage {
-	private static final String URL_LANCES ="http://localhost:8080/leilao"; 
+import br.com.alura.leilao.refatora.PageObject;
 
+public class LancesPage extends PageObject {
+
+	private static final String URL_LANCES ="http://localhost:8080/leilao"; 
 	private WebDriver browser;
 	
 	public LancesPage() {
-		System.setProperty("webdriver.chrome.driver",
-				System.getProperty("user.dir") + "/drivers/chromedriver.exe");
-		this.browser = new ChromeDriver();
-		this.browser.navigate().to(URL_LANCES);
+		super(null);
+		browser.navigate().to(URL_LANCES);
 	}
-	
+
+		
 	public boolean isPaginaAtual() {
 		return browser.getCurrentUrl().contains(URL_LANCES);
 	}
